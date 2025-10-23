@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <form id="loginForm">
+        <div class="container">
+            <h1>Login Form</h1>
+                  
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Enter your name" required>
+            
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+            <a href="#" class="in">Forgot password?</a>
+            <button type="submit">Submit</button>
+            <br>
+            <a href="register.html" class="link">Don't have an account? Click here</a>
+        </div>
+    </form>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault(); 
+
+            const username = document.getElementById("username").value.trim();
+            const password = document.getElementById("password").value.trim();
+
+            const savedUsername = localStorage.getItem("username");
+            const savedPassword = localStorage.getItem("password");
+
+            if (username === savedUsername && password === savedPassword) {
+                alert("Login successful!");
+                localStorage.setItem("loggedInUser", username); 
+                window.location.href = "index.html"; 
+            } else {
+                alert("Invalid username or password!");
+            }
+        });
+    </script>
+</body>
+</html>
